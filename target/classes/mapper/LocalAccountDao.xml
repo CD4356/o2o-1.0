@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cd.o2o.dao.LocalAccountDao">
+
+    <resultMap id="localAccount" type="LocalAccount">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <result property="createTime" column="create_time"/>
+        <result property="lastEditTime" column="last_edit_time"/>
+        <association property="person" column="person_id" javaType="Person">
+            <id column="user_id" property="userId"/>
+            <result column="name" property="name"/>
+            <result column="profile_img" property="profileImg"/>
+            <result column="email" property="email"/>
+            <result column="gender" property="gender"/>
+            <result column="enable_status" property="enableStatus"/>
+            <result column="person_type" property="personType"/>
+            <result column="create_time" property="createTime"/>
+            <result column="last_edit_time" property="lastEditTime"/>
+        </association>
+    </resultMap>
+
+
+    <select id="queryLocalByUserNameAndPwd" resultMap="localAccount">
+        SELECT
+          l.id,
+          l.username,
+          l.password,
+          l.create_time,
+          l.last_edit_time,
+          p.user_id,
+          p.name,
+          p.profile_img,
+          p.email,
+          p.gender,
+          p.enable_status,
+          p.person_type,
+          p.create_time,
+		  p.last_edit_time
+        FROM
+          local_account l
+        LEFT JOIN
+          person p
+        ON
+          p.user_id = l.person_id
+        WHERE
+          username=#{username} AND password=#{password}
+    </select>
+
+
+    <insert id="insertLocalAccount" parameterType="LocalAccount">
+        INSERT INTO local_account
+          (username,password,create_time,last_edit_time,person_id)
+		VALUES
+          (#{username},#{password},#{createTime},#{lastEditTime},#{person.userId})
+    </insert>
+
+</mapper>

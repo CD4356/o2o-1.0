@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>账号绑定</title>
+    <meta name="description" content="MSUI: Build mobile apps with simple HTML, CSS, and JS components.">
+    <meta name="author" content="阿里巴巴国际UED前端">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm-extend.min.css">
+</head>
+<body>
+<div class="page-group">
+    <div id="page-label-input" class="page">
+        <header class="bar bar-nav">
+            <a class="button button-link button-nav pull-left back" href="javascript:history.go(-1)">
+                <span class="icon icon-left"></span>
+                返回
+            </a>
+            <h1 class="title"><b>注册</b></h1>
+        </header>
+        <div class="content">
+            <form>
+                <div class="list-block">
+                    <ul>
+                        <!-- 用户名 Text -->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media">
+                                    <i class="icon icon-form-email"></i>
+                                </div>
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="text" id="username" placeholder="用户名">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- 密码 password -->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media">
+                                    <i class="icon icon-form-email"></i>
+                                </div>
+                                <div class="item-inner">
+                                    <div class="item-input">
+                                        <input type="password" id="pwd" placeholder="密码">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- 用户头像缩略图 -->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media">
+                                    <i class="icon icon-form-email"></i>
+                                </div>
+                                <div class="item-content">
+                                    <div class="item-inner">
+                                        <div class="item-title label">头像</div>
+                                        <div class="item-input">
+                                            <input type="file" id="upload_file">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- captcha验证码 -->
+                        <li>
+                            <div class="item-content">
+                                <div class="item-media">
+                                    <i class="icon icon-form-email"></i>
+                                </div>
+                                <div class="item-inner">
+                                    <label for="j_captcha" class="item-title label">验证码</label>
+                                    <input id="j_captcha" name="j_captcha" type="text"
+                                           class="form-control in" placeholder="验证码" />
+                                    <div class="item-input">
+                                        <img id="captcha_img" alt="点击更换" title="点击更换"
+                                             onclick="changeVerifyCode(this)" src="../Kaptcha" />
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="content-block">
+                    <div class="row">
+                        <div class="col-50">
+                            <a href="#" class="button button-big button-fill button-danger" id="clear">重置</a>
+                        </div>
+                        <div class="col-50">
+                            <a href="#" class="button button-big button-fill button-success" id="submit">注册</a>
+                        </div>
+                    </div>
+                </div>
+                <input type="reset" style="display: none">
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm-extend.min.js' charset='utf-8'></script>
+
+<script type='text/javascript' src='../resources/js/common/common.js' charset='utf-8'></script>
+<script type='text/javascript' src='../resources/js/local/register.js' charset='utf-8'></script>
+
+
+</body>
+</html>

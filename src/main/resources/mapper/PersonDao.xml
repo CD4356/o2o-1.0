@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cd.o2o.dao.PersonDao">
+
+    <insert id="insertPerson" parameterType="Person">
+        insert
+        into
+            person
+            (name,pwd,profile_img,email,gender,enable_status,person_type,create_time,last_edit_time)
+        values
+            (#{name},#{pwd},#{profileImg},#{email},#{gender},#{enableStatus},#{personType},#{createTime},#{lastEditTime})
+    </insert>
+
+    <insert id="updatePerson"  parameterType="Person">
+        update person
+        <set>
+            <if test="name != null">name=#{name},</if>
+            <if test="pwd != null">pwd=#{pwd},</if>
+            <if test="profileImg != null">profile_img=#{profileImg},</if>
+            <if test="email != null">email=#{email},</if>
+            <if test="gender != null">gender=#{gender},</if>
+            <if test="enableStatus != null">enable_status=#{enableStatus},</if>
+            <if test="personType != null">person_type=#{personType},</if>
+            <if test="createTime != null">create_time=#{createTime},</if>
+            <if test="lastEditTime != null">last_edit_time=#{lastEditTime}</if>
+        </set>
+        where user_id = #{userId}
+    </insert>
+    
+    <select id="queryPersonByName" resultType="Person">
+        select
+          user_id,
+          name,
+          pwd,
+          profile_img,
+          email,
+          gender,
+          enable_status,
+          person_type,
+          create_time,
+          last_edit_time
+        from
+          person
+        where
+          name = #{userName}
+    </select>
+
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 配置全局属性 -->
+    <settings>
+        <!-- 使用jdbc的getGeneratedKeys获取数据库自增主键值 -->
+        <setting name="useGeneratedKeys" value="true" />
+
+        <!-- 使用列标签替换列别名 默认:true -->
+        <setting name="useColumnLabel" value="true" />
+
+        <!--因为在查询数据库的时候,有两种类型的返回结果：
+        1、resultMap类型, 但使用resultMap作为返回结果类型,需要通过<resultMap>标签来配置实体类属性与表字段的一一对应关系
+        2、resultType类型, 但使用resultType作为返回结果类型,必须保证实体类属性名与表字段名一致,否则就会映射失败。
+        注：当然,如果实体类属性名与表字段名不一致, 但实体类属性名 是以 表字段名的驼峰格式来命名的。
+        那么, 通过在mybatis配置文件中的<setting>中配置mapUnderscoreToCamelCase开启驼峰命名转换,
+        也能实现实体类属性和表字段之间的映射关系 -->
+        <!-- 开启驼峰命名转换:Table{create_time} -> Entity{createTime} -->
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+    </settings>
+
+</configuration>

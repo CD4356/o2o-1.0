@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 1、导入spring-service.xml配置文件 -->
+    <import resource="classpath:spring/spring-service.xml"/>
+
+    <!--2、自动扫描注册被@Component，@Repository，@Service，@Controller等注解的类到容器创建bean-->
+    <context:component-scan base-package="com.cd.o2o.web"/>
+
+    <!--3、开启spring mvc注解模式，自动扫描@RequestMapping，@ResponseBody等spring mvc特性注解，并使之生效-->
+    <mvc:annotation-driven/>
+
+    <!--4、静态资源默认servlet配置:
+            1、加入对静态资源(js、css、jpg、png、git等. . .)
+            2、允许使用'/'做整体映射-->
+    <!--即: resources目录下的静态资源不要用DispatcherServlet去拦截,
+        而是,交由默认servlet(<mvc:default-servlet-handler/>)来处理-->
+    <mvc:resources mapping="/resources/**" location="/resources/"/>
+    <!--默认servlet-->
+    <mvc:default-servlet-handler/>
+
+    <!--5、配置视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!--视图前缀-->
+        <property name="prefix" value="/WEB-INF/html/"/>
+        <!--视图后缀-->
+        <property name="suffix" value=".html"/>
+    </bean>
+
+    <!--文件上传解析器-->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+        <!--设置请求的编码格式为UTF-8,默认为iso-8859-1-->
+        <property name="defaultEncoding" value="utf-8"/>
+        <!-- 上传文件的最大字节数  1024个字节为1kB, 1024kB为1M
+                1024*1024*10 = 10M , 上传文件的大小不能超过10M-->
+        <property name="maxUploadSize" value="10485760"/>
+        <!-- 最大内存也限制为10M -->
+        <property name="maxInMemorySize" value="10485760"/>
+    </bean>
+
+</beans>

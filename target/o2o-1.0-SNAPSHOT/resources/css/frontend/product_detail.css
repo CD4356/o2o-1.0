@@ -1,0 +1,24 @@
+.img-list > div {
+    padding: 0px 25px 25px 25px;
+}
+
+.img-list > img {
+    width: 100%;
+}
+
+.del {
+    font-size: 1.3em;
+}
+
+.show {
+    color: red;
+    font-size: 2em;
+}
+
+.no-img {
+    color: #999999;
+    height: 120px;
+    text-align: center;
+    line-height: 120px;
+    font-weight: bold;
+}

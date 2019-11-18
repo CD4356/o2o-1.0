@@ -1,0 +1,16 @@
+.row-product-category {
+    border: 1px solid #999;
+    padding: .5rem;
+    border-bottom: none;
+}
+.product-category-name {
+    white-space: nowrap;
+    overflow-x: scroll; /*超出的内容进行滚动查看*/
+}
+.category-input {
+    border: none;
+    background-color: #eee;
+}
+.row-product-category:last-child {
+    border-bottom: 1px solid #999;
+}

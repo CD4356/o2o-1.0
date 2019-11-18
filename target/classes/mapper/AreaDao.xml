@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cd.o2o.dao.AreaDao">
+    
+    <resultMap id="area" type="Area">
+        <id property="areaId" column="area_id" javaType="int"/>
+        <result property="areaName" column="area_name" javaType="String"/>
+        <result property="priority" column="priority" javaType="int"/>
+        <result property="createTime" column="create_time" javaType="java.util.Date"/>
+        <result property="lastEditTime" column="last_edit_time" javaType="java.util.Date"/>
+    </resultMap>
+
+    <select id="queryArea" resultMap="area">
+        select *from area order by priority desc
+    </select>
+
+</mapper>

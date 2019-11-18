@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cd.o2o.dao.ProductImgDao">
+
+    <!--配置属性与字段的关系映射-->
+    <resultMap id="productImg" type="ProductImg">
+        <id property="productImgId" column="product_img_id"/>
+        <result property="productDetailImg" column="product_detail_img"/>
+        <result property="imgDesc" column="img_desc"/>
+        <result property="priority" column="priority"/>
+        <result property="createTime" column="create_time"/>
+        <result column="productId" property="product_id"/>
+    </resultMap>
+
+    <!--
+    collection: 指定要遍历的集合
+    item: 保存集合中的每个元素
+    separator: 分隔符,指定两个()圆括号之间的分隔符  如：values(XX.xx,XXX.xxx),(XX.xx,XXX.xxx),(XX.xx,XXX.xxx)
+    -->
+    <insert id="batchInsertProductImg" parameterType="java.util.List">
+        insert into
+        product_img
+        (
+        product_detail_img,
+        img_desc,
+        priority,
+        create_time,
+        product_id
+        )
+        values
+        <foreach collection="list" item="productImg" separator="," index="index">
+            (
+            #{productImg.productDetailImg},
+            #{productImg.imgDesc},
+            #{productImg.priority},
+            #{productImg.createTime},
+            #{productImg.productId}
+            )
+        </foreach>
+    </insert>
+
+    <delete id="deleteProductImgByProductId" parameterType="Long">
+        delete from product_img where product_id = #{productId}
+    </delete>
+
+
+    <select id="queryProductImgListByProductId" resultMap="productImg" parameterType="long">
+        select
+		product_img_id,
+		product_detail_img,
+		img_desc,
+		priority,
+		create_time,
+		product_id
+		from product_img
+		where product_id=#{productId}
+		order by
+		product_img_id asc
+    </select>
+
+</mapper>

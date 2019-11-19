@@ -878,36 +878,4 @@ public class PersonController {
 
 <font face=consolas>**DTO及相关枚举类**：
 
-
-<br><br>
-
-
-前期规划不够好，后期花费了很多时间重构代码
-
-
-
-
-
-
-
-
-
-
-<br><br><hr>
-前端时使用SUI Mobile迭代出来的
-
-由于项目会产生大量的图片，所以引入图片开源工具Thumbnailator 对图片进行压缩。
-
-[图片处理](https://blog.csdn.net/Sunmeok/article/details/82182571)
-https://blog.csdn.net/qq_43699339/article/details/89420647
-
-
-
-
-
-Ajax的核心对象是XmlHttpRequest，即可扩展超文本传输请求，主要用来向服务器发送http请求，获取数据，实现页面的局部刷新功能，提高用户的体验效果
-[https://blog.csdn.net/Ag_wenbi/article/details/52840801](https://blog.csdn.net/Ag_wenbi/article/details/52840801)
-[https://blog.csdn.net/master_ning/article/details/79822971](https://blog.csdn.net/master_ning/article/details/79822971)
-[http://tieba.baidu.com/p/5810286152](http://tieba.baidu.com/p/5810286152)
-
-[Quartz定时任务](https://blog.csdn.net/noaman_wgs/article/details/80984873)
+	. . .

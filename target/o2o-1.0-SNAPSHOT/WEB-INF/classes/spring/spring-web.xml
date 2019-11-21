@@ -42,4 +42,22 @@
         <property name="maxInMemorySize" value="10485760"/>
     </bean>
 
+    <!--拦截器链-->
+    <mvc:interceptors>
+        <!--拦截器1，对商家管理系统进行权限验证-->
+        <mvc:interceptor>
+            <!--指定拦截的请求-->
+            <mvc:mapping path="/shop_admin/**"/>
+            <!--指定使用的自定义拦截器类-->
+            <bean class="com.cd.o2o.interceptor.ShopAdminInterceptor"/>
+        </mvc:interceptor>
+        <!--拦截器2，对超级管理员系统进行权限验证-->
+        <mvc:interceptor>
+            <!--指定拦截的请求-->
+            <mvc:mapping path="/super_admin/**"/>
+            <!--指定使用的自定义拦截器类-->
+            <bean class="com.cd.o2o.interceptor.SuperAdminInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>

@@ -13,9 +13,10 @@ public class SuperAdminInterceptor extends HandlerInterceptorAdapter {
         System.out.println("-----执行preHandle方法-----------");
         //获取用户登陆信息
         Person person = (Person) request.getSession().getAttribute("person");
-        //判断用户是否有权限进入商家管理后台系统
+        //判断用户是否有权限进入超级管理员后台系统
         if(person != null && person.getUserId() > 0
                 && person.getEnableStatus() == 1 && person.getPersonType() == 3){
+            //如果验证通过，则返回true，放行请求，即用户接下来的操作可以正常执行
             return true;
         }
         //如果不满足登陆验证，则跳转到登陆页面

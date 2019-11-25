@@ -6,6 +6,7 @@
 
     <!--配置数据库相关参数properties的属性(${}),方便数据库连接-->
     <!--<context:property-placeholder location="jdbc.properties"/>-->
+    <import resource="classpath:spring/spring-redis.xml"/>
 
     <!--1、自动扫描dao包-->
     <context:component-scan base-package="com.cd.o2o.dao"/>

@@ -14,6 +14,12 @@ public class LocalAccountServiceImpl implements LocalAccountService {
     @Autowired
     private LocalAccountDao localAccountDao;
 
+    /**
+     * 绑定本地账号
+     *
+     * @param localAccount
+     * @return
+     */
     public int addLocalAccount(LocalAccount localAccount) {
         localAccount.setCreateTime(new Date());
         localAccount.setLastEditTime(new Date());

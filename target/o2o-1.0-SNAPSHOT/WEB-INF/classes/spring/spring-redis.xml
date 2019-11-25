@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--引入redis.properties配置参数文件-->
+    <context:property-placeholder location="classpath:redis.properties"/>
+
+    <!--redis连接池配置-->
+    <bean id="poolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <!--#最大连接数-->
+        <property name="maxTotal" value="${redis.pool.maxTotal}"/>
+        <!--#最大空闲数-->
+        <property name="maxIdle" value="${redis.pool.maxIdle}"/>
+        <!--#最小空闲数-->
+        <property name="minIdle" value="${redis.pool.minIdle}"/>
+    </bean>
+
+    <!--创建Redis连接池，并做相关配置-->
+    <bean id="jedisPoolUtil" class="com.cd.o2o.cache.JedisPoolUtil">
+        <constructor-arg name="jedisPoolConfig" ref="poolConfig"/>
+        <constructor-arg name="hostname" value="${redis.hostname}"/>
+        <constructor-arg name="port" value="${redis.port}"/>
+    </bean>
+
+    <!--创建Redis工具类，封装好Redis的连接以进行相关操作-->
+    <bean id="jedisUtil" class="com.cd.o2o.cache.JedisUtil">
+        <property name="jedisPool" ref="jedisPoolUtil"/>
+    </bean>
+
+    <!--Redis的key操作，工具类有一个对象即可，所以设置scope为singleton单例-->
+    <bean id="jedisKeys" class="com.cd.o2o.cache.JedisUtil$Keys" scope="singleton">
+        <constructor-arg ref="jedisUtil"/>
+    </bean>
+
+    <!--Redis的String操作，工具类有一个对象即可，所以设置scope为singleton单例-->
+    <bean id="jedisString" class="com.cd.o2o.cache.JedisUtil$Strings" scope="singleton">
+        <constructor-arg ref="jedisUtil"/>
+    </bean>
+</beans>
